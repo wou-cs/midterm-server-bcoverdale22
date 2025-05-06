@@ -4,6 +4,14 @@ from flask import Flask, request
 app = Flask(__name__)
 
 
-@app.route("/some_route_here", methods=["GET"])
-def method_name():
-    return {}
+@app.route("/api/calcs/<int:num>", methods=["GET"])
+def calc(num):
+    if num < 0:
+        return(404)
+    dec = num - 1
+    hex_num = hex(num)
+    print(f"dec: {dec}, hex: {hex_num}")
+    return {
+        "dec": dec,
+        "hex": hex_num
+    }
